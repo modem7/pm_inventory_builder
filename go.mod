@@ -1,6 +1,6 @@
 module github.com/rjcoupe/pm_inventory_builder
 
-go 1.17
+go 1.19
 
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
