@@ -1,0 +1,22 @@
+name: GO build CI
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  Test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Go
+        uses: actions/setup-go@v3
+        with:
+          go-version-file: 'go.mod'
+      - name: Install dependencies
+        run: go mod download
+      - name: Build
+        run: go build .
+      - name: Test
+        run: ./pm_inventory_builder -help
