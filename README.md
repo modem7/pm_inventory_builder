@@ -1,6 +1,11 @@
 # pm_inventory_builder
 Builds an Ansible inventory from the Proxmox API, grouping VMs by tags
 
+![Docker Pulls](https://img.shields.io/docker/pulls/modem7/pm_inventory_builder) 
+![Docker Image Size (tag)](https://img.shields.io/docker/image-size/modem7/pm_inventory_builder/latest) 
+[![Build Status](https://drone.modem7.com/api/badges/modem7/pm_inventory_builder/status.svg)](https://drone.modem7.com/modem7/pm_inventory_builder)
+[![GitHub latest commit](https://badgen.net/github/last-commit/modem7/pm_inventory_builder)](https://GitHub.com/modem7/pm_inventory_builder/commit/)
+
 ## Usage
 
 ```
@@ -22,5 +27,17 @@ Usage of pm_inventory_builder:
         Proxmox API URL (default "https://localhost:8006")
 ```
 
-### Example
-`$ pm_inventory_builder -url https://192.168.1.100:8006 -allow-insecure-tls -ansible-user ubuntu -tokenId 'myUser@pve!myToken' -tokenSecret '44a2085e-f9ae-41c7-a595-d66ece971203' > my_proxmox_inventory.yaml`
+## Docker
+
+### Variables
+| Variable | Default |
+| :----: | --- |
+| PM_IP | 192.168.1.100 |
+| PM_PORT | 8006 |
+| PM_USER | ubuntu |
+| PM_TOKENID | myUser@pve!myToken |
+| PM_TOKENSECRET | 44a2085e-f9ae-41c7-a595-d66ece971203 |
+
+### Running
+- Create or copy env.list file. Modify as required.
+- Run `docker run --rm -v "$(pwd)":/data --env-file env.list modem7/pm_inventory_builder:latest`
