@@ -6,6 +6,8 @@ Builds an Ansible inventory from the Proxmox API, grouping VMs by tags
 [![Build Status](https://drone.modem7.com/api/badges/modem7/pm_inventory_builder/status.svg)](https://drone.modem7.com/modem7/pm_inventory_builder)
 [![GitHub latest commit](https://badgen.net/github/last-commit/modem7/pm_inventory_builder)](https://GitHub.com/modem7/pm_inventory_builder/commit/)
 
+---
+
 ## Usage
 
 ```
@@ -27,6 +29,8 @@ Usage of pm_inventory_builder:
         Proxmox API URL (default "https://localhost:8006")
 ```
 
+---
+
 ## Docker
 
 ### Variables
@@ -39,5 +43,22 @@ Usage of pm_inventory_builder:
 | PM_TOKENSECRET | 44a2085e-f9ae-41c7-a595-d66ece971203 |
 
 ### Running
-- Create or copy env.list file. Modify as required.
+#### Environment Variables
+Either:
+- Create or copy the [env.list](https://github.com/modem7/pm_inventory_builder/blob/master/env.list) file. Modify as required.
 - Run `docker run --rm -v "$(pwd)":/data --env-file env.list modem7/pm_inventory_builder:latest`
+
+Or 
+
+Run the following in your console (modifying the values as required):
+```bash
+export PM_IP='192.168.1.100'
+export PM_PORT='8006'
+export PM_USER='ubuntu'
+export PM_TOKENID='myUser@pve!myToken'
+export PM_TOKENSECRET='44a2085e-f9ae-41c7-a595-d66ece971203'
+
+docker run --rm -v "$(pwd)":/data -e PM_IP -e PM_PORT -e PM_USER -e PM_TOKENID -e PM_TOKENSECRET modem7/pm_inventory_builder:latest
+```
+
+Once you have run this, you will have a new file created in your directory called `my_proxmox_inventory.yaml` with your inventory data.
