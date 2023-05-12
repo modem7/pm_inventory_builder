@@ -9,7 +9,7 @@ RUN go mod download
 COPY --link . .
 RUN --mount=type=cache,target=/root/.cache/go-build go build -v -o /out/pm_inventory_builder .
 
-FROM alpine:3.17 AS app
+FROM alpine:3 AS app
 
 COPY --link --chmod=755 --from=builder /out/pm_inventory_builder /
 COPY --link --chmod=755 entrypoint.sh /
